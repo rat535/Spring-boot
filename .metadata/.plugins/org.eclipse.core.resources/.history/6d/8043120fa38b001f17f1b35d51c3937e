@@ -1,0 +1,57 @@
+package com.project.login.Model;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
+public class User {
+	
+	@Id
+	private int id;
+	private String name;
+	private String eamil;
+	private String password;
+	private String phoneno;
+	
+	public User(String name, String eamil, String password, String phoneno) {
+		super();
+		this.name = name;
+		this.eamil = eamil;
+		this.password = password;
+		this.phoneno = phoneno;
+	}
+	
+	public int getId() {
+		return id;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getEamil() {
+		return eamil;
+	}
+	public void setEamil(String eamil) {
+		this.eamil = eamil;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String getPhoneno() {
+		return phoneno;
+	}
+	public void setPhoneno(String phoneno) {
+		this.phoneno = phoneno;
+	}
+	
+}

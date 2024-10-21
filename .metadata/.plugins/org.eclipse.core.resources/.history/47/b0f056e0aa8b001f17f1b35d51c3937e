@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h2>Register Here</h2>
+
+<div th:if="${Succesmsg}">
+ <h3 style ="color:green;" th:text="${Succesmsg}"></h3>
+</div>
+
+<div th:if="${errormsg}">
+ <h3 style ="color:red;" th:text="${errormsg}"></h3>
+</div>
+
+<form th:action="@{/regForm}" th:object="${user}">
+   Name : <input type="text" th:field="*{user}*"/><br/><br/>
+   Email Id : <input type="email"th:field="*{email}*" /><br/><br/>
+   Password: <input type="password" th:field="*{password}*" /><br/><br/>
+   Phone No : <input type="text" th:field="*{phoneno}*" /><br/><br/>
+   <input type="submit" value = "Register" /><br/><br/>
+</form>
+</body>
+</html>

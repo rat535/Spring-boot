@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h2>Register Here</h2>
+
+<form action="">
+   Name : <input type="text" name = "name"/><br/><br/>
+   Email Id : <input type="email" name = "email" /><br/><br/>
+   Password: <input type="email" name = "email" /><br/><br/>
+   Phone No : <input type="email" name = "email" /><br/><br/>
+   <input type="submit" value = "Register" /><br/><br/>
+</form>
+</body>
+</html>

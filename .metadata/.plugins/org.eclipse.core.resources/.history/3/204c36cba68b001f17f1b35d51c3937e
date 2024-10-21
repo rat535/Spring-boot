@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h2>Register Here</h2>
+
+<form th:object="${user}">
+   Name : <input type="text" th:field="*{name}*"/><br/><br/>
+   Email Id : <input type="email"th:field="*{email}*" /><br/><br/>
+   Password: <input type="password" th:field="*{password}*" /><br/><br/>
+   Phone No : <input type="email" th:field="*{phoneno}*" /><br/><br/>
+   <input type="submit" value = "Register" /><br/><br/>
+</form>
+</body>
+</html>

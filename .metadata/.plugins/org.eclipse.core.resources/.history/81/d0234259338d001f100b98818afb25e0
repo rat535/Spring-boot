@@ -1,0 +1,31 @@
+package com.project.Vendor.Services;
+
+import org.springframework.stereotype.Service;
+
+import com.project.Vendor.Model.Vendor;
+import com.project.Vendor.Repository.VendorRepo;
+
+@Service
+public class VendorServiceImpl implements  VendorService{
+
+	VendorRepo vendorrepo;
+	
+	public VendorServiceImpl(VendorRepo vendorrepo) {
+		super();
+		this.vendorrepo = vendorrepo;
+	}
+
+	@Override
+	public Vendor createVendor(Vendor vendor) {
+	
+        return vendorrepo.save(vendor);
+		
+	}
+
+	@Override
+	public Vendor getVendor(Vendor vendor) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

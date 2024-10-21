@@ -1,0 +1,19 @@
+package com.project.login.controller;
+
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.project.login.Model.User;
+
+import org.springframework.ui.Model;
+
+@Controller
+public class Mycontroller {
+	@GetMapping("/regpage")
+	public String openRegPage(Model model) {
+		model.addAttribute("user",new User());
+		return "Register";
+	}
+}

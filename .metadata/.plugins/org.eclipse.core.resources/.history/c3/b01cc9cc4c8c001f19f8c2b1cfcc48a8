@@ -1,0 +1,8 @@
+package com.project.Banking.service;
+
+import com.project.Banking.Dto.AccountDto;
+import com.project.Banking.model.Account;
+
+public interface AccountService {
+	AccountDto createAccount(AccountDto accountDto);
+}

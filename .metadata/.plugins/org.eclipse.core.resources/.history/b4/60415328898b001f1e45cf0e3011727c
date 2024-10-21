@@ -1,0 +1,5 @@
+package com.rat.loginweb.repository;
+
+public class UserRepositiry {
+
+}

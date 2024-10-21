@@ -1,0 +1,5 @@
+package com.jpa.text;
+
+public interface UserRepo {
+
+}

@@ -1,0 +1,18 @@
+package com.project.Banking.Mapper;
+
+import com.project.Banking.Dto.AccountDto;
+import com.project.Banking.model.Account;
+
+public class AccountMapper {
+
+	public static Account mapTpAccount(AccountDto accountDto)
+	{
+		Account account = new Account(
+				accountDto.getId(),
+				accountDto.getAccountholderName(),
+				accountDto.getBalance()                                        		
+	    );
+		return account;
+				
+	}
+}

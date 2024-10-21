@@ -1,0 +1,5 @@
+package com.project.Banking.service;
+
+public interface AccountService {
+
+}

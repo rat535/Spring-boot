@@ -1,0 +1,26 @@
+package com.project.Banking.service.impl;
+
+import org.springframework.stereotype.Service;
+
+import com.project.Banking.Dto.AccountDto;
+import com.project.Banking.repository.AccountRepositort;
+import com.project.Banking.service.AccountService;
+
+
+@Service
+public class AccountInpl implements AccountService {
+
+	private AccountRepositort accountRepository;
+	
+	public AccountInpl(AccountRepositort accountRepository) {
+		super();
+		this.accountRepository = accountRepository;
+	}
+
+	@Override
+	public AccountDto createAccount(AccountDto accountDto) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
