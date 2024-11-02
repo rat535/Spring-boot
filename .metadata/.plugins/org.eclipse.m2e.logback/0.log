@@ -3566,3 +3566,4 @@ org.eclipse.core.runtime.CoreException: Could not resolve artifact org.webjars:s
 2024-11-01 19:01:28,737 [Worker-168: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
 2024-11-01 19:01:28,741 [Worker-168: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\Vinay\Desktop\projects\Project4blog\src\test\resources
 2024-11-02 09:57:46,397 [Worker-8: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2024-11-02 09:59:31,529 [Worker-10: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
