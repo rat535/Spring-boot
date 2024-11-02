@@ -1,5 +1,0 @@
-package com.project.Banking.repository;
-
-public interface AccountRepositort {
-
-}

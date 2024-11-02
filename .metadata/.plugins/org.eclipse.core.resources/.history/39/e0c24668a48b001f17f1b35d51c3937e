@@ -1,7 +1,0 @@
-package com.project.login.services;
-
-import com.project.login.Model.User;
-
-public interface UserService {
-	public void registerUser(User user);
-}

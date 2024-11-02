@@ -1,5 +1,0 @@
-package com.rat.loginweb.repository;
-
-public interface UserRepository {
-
-}

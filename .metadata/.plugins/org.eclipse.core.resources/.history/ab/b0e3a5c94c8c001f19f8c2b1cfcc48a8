@@ -1,7 +1,0 @@
-package com.project.Banking.service;
-
-import com.project.Banking.model.Account;
-
-public interface AccountService {
-	Account createAccount(Account account);
-}

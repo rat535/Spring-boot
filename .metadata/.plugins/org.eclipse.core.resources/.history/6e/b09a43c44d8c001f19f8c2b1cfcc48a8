@@ -1,9 +1,0 @@
-package com.project.Banking.Dto;
-
-public class AccountDto {
-
-	private Long id;
-	private String AccountholderName;
-	private double balance;
-	
-}
