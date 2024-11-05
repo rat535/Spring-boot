@@ -1,6 +1,5 @@
 package com.project.BlogApp.payload;
 
-
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 
@@ -8,20 +7,19 @@ import jakarta.validation.constraints.Size;
 
 public class UserDto {
 
-	
 	private int id;
-	
+
 	@NotEmpty
-	@Size(min =4,message = "Username must be more than 3 character")
+	@Size(min = 4, message = "Username must be more than 3 character")
 	private String name;
-	
-    @Email(message ="Email is not valid")
+
+	@Email(message = "Email is not valid")
 	private String email;
-	
-    @NotEmpty 
-    @Size(min =3, max = 10, message="password must be in between 3 to 10 ")
-	private  String password;
-	
+
+	@NotEmpty
+	@Size(min = 3, max = 10, message = "password must be in between 3 to 10 ")
+	private String password;
+
 	private String about;
 
 	public UserDto() {
@@ -77,6 +75,5 @@ public class UserDto {
 	public void setAbout(String about) {
 		this.about = about;
 	}
-	
 
 }

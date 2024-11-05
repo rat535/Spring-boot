@@ -11,9 +11,9 @@ public class Project4blogApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(Project4blogApplication.class, args);
 	}
-	
+
 	@Bean
-	public ModelMapper modelMapper(){
+	public ModelMapper modelMapper() {
 		return new ModelMapper();
 	}
 

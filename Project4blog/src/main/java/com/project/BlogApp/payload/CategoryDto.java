@@ -4,14 +4,14 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 public class CategoryDto {
-    private Integer categoryId;
-	
-    @NotBlank
-    @Size(min = 4, message =" Min size of category title is 4")
+	private Integer categoryId;
+
+	@NotBlank
+	@Size(min = 4, message = " Min size of category title is 4")
 	private String categoryTittle;
-	
-    @NotBlank
-    @Size(min = 10,message =" Min size of category Description is 10")
+
+	@NotBlank
+	@Size(min = 10, message = " Min size of category Description is 10")
 	private String categoryDescription;
 
 	public CategoryDto() {
@@ -49,5 +49,5 @@ public class CategoryDto {
 	public void setCategoryDescription(String categoryDescription) {
 		this.categoryDescription = categoryDescription;
 	}
-	
+
 }

@@ -19,54 +19,49 @@ import org.springframework.web.bind.annotation.RestController;
 import com.project.BlogApp.Service.UserService;
 import com.project.BlogApp.payload.UserDto;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/users")
+@Tag(name = "Users", description ="User related data (CRUD)")
 public class UserController {
 	@Autowired
 	private UserService userService;
-	
-	
-	//POST - create user
-	
+
+	// POST - create user
+
 	@PostMapping("/")
-	public ResponseEntity<UserDto> createUser(@Valid @RequestBody UserDto userDto)
-	{
+	public ResponseEntity<UserDto> createUser(@Valid @RequestBody UserDto userDto) {
 		UserDto created = this.userService.createUser(userDto);
 		return new ResponseEntity<>(created, HttpStatus.CREATED);
-    }
-	
+	}
+
 	// PUT - update
 	@PutMapping("/{userId}")
-	public ResponseEntity<UserDto> updateUser(@Valid @RequestBody UserDto userDto,@PathVariable Integer userId )
-	{
+	public ResponseEntity<UserDto> updateUser(@Valid @RequestBody UserDto userDto, @PathVariable Integer userId) {
 		UserDto updated = this.userService.updateUser(userDto, userId);
 		return ResponseEntity.ok(updated);
-		
+
 	}
-	
-	//DELETE - delete the unrequired user
+
+	// DELETE - delete the required user
 	@DeleteMapping("/{userId}")
-	public ResponseEntity<?> deleteUser(@PathVariable Integer userId)
-	{
+	public ResponseEntity<?> deleteUser(@PathVariable Integer userId) {
 		this.userService.deleteUser(userId);
-		return new ResponseEntity<>(Map.of("message","userDeletd"),HttpStatus.OK);
+		return new ResponseEntity<>(Map.of("message", "userDeletd"), HttpStatus.OK);
 	}
-	
-	//Get - All user
+
+	// Get - All user
 	@GetMapping("/")
-	public ResponseEntity<List<UserDto>> getAll()
-	{
+	public ResponseEntity<List<UserDto>> getAll() {
 		return ResponseEntity.ok(this.userService.getAllUsers());
 	}
-	
-	//GET User by Id
+
+	// GET User by Id
 	@GetMapping("/{userId}")
-	public ResponseEntity<UserDto> getUser(@PathVariable Integer userId)
-	{
+	public ResponseEntity<UserDto> getUser(@PathVariable Integer userId) {
 		return ResponseEntity.ok(this.userService.getUserById(userId));
 	}
 
 }
- 

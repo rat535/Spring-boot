@@ -22,6 +22,7 @@ import com.project.BlogApp.Repository.UserRepo;
 import com.project.BlogApp.Service.PostService;
 import com.project.BlogApp.exceptions.ResoueceNotFound;
 import com.project.BlogApp.payload.PostDto;
+import com.project.BlogApp.payload.PostResponce;
 
 import org.springframework.data.domain.*;
 
@@ -80,21 +81,7 @@ public class POstServiceImpl implements PostService {
 		
 	}
 
-	@Override
-	public List<PostDto> getAllPost() {
-		// TODO Auto-generated method stub
-		//List<Post> allPosts = this.postRepo.findAll();
-		
-		int pageSize =5;
-		int pageNumber = 1;
-		Pageable p = PageRequest.of(pageNumber,pageSize);
-		
-		Page<Post> pagePost = this.postRepo.findAll(p);
-		List<Post> allPosts = pagePost.getContent();
-		
-		List<PostDto> posts = allPosts.stream().map((post)-> this.modelMapper.map(post,PostDto.class)).collect(Collectors.toList());
-		return posts;
-	}
+	
 
 	@Override
 	public PostDto getPostById(Integer postId) {
@@ -123,6 +110,29 @@ public class POstServiceImpl implements PostService {
 		List<PostDto> udp= up.stream().map((ups)->this.modelMapper.map(ups, PostDto.class)).collect(Collectors.toList());
 		
 		return udp;
+	}
+
+	@Override
+	public PostResponce getAllPost(Integer pageSize, Integer PageNumber) {
+		// TODO Auto-generated method stub
+Pageable p = PageRequest.of(PageNumber,pageSize);
+		
+		Page<Post> pagePost = this.postRepo.findAll(p);
+		List<Post> allPosts = pagePost.getContent();
+		
+		List<PostDto> posts = allPosts.stream().map((post)-> this.modelMapper.map(post,PostDto.class)).collect(Collectors.toList());
+		
+		PostResponce postResponce = new PostResponce();
+		postResponce.setCotent(posts);
+		postResponce.setPageNumber(pagePost.getNumber());
+		postResponce.setPageSize(pagePost.getSize());
+		
+		postResponce.setTotalElements(pagePost.getTotalElements());
+		
+		postResponce.setTotalPage(pagePost.getTotalPages());
+		postResponce.setLastPage(pagePost.isLast());
+		
+		return postResponce;
 	}
 
 }
