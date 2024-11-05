@@ -1,8 +1,10 @@
 package com.project.BlogApp.Controllers;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.project.BlogApp.Service.FileService;
 import com.project.BlogApp.Service.PostService;
 import com.project.BlogApp.payload.ApiResponse;
 import com.project.BlogApp.payload.PostDto;
@@ -26,62 +30,78 @@ public class PostController {
 
 	@Autowired
 	private PostService postService;
-	
-	
+
+	@Autowired
+	private FileService fileService;
+
+	@Value("${project.image}")
+	private String path;
+
 	@PostMapping("/user/{userId}/category/{catId}/posts")
-	public ResponseEntity<PostDto> createPost(@RequestBody PostDto postDto, @PathVariable Integer userId,@PathVariable Integer catId)
-	{
-	PostDto create=	this.postService.createPost(postDto, userId, catId);
-		return new ResponseEntity<PostDto>(create,HttpStatus.CREATED);
+	public ResponseEntity<PostDto> createPost(@RequestBody PostDto postDto, @PathVariable Integer userId,
+			@PathVariable Integer catId) {
+		PostDto create = this.postService.createPost(postDto, userId, catId);
+		return new ResponseEntity<PostDto>(create, HttpStatus.CREATED);
 	}
-	
+
 	@GetMapping("/user/{userId}/posts")
-	public ResponseEntity<List<PostDto>> getByUser(@PathVariable Integer userId)
-	{
-		List<PostDto> posts= this.postService.getPostByUser(userId);
-		
-		return new ResponseEntity<List<PostDto>>(posts,HttpStatus.OK);
-		
+	public ResponseEntity<List<PostDto>> getByUser(@PathVariable Integer userId) {
+		List<PostDto> posts = this.postService.getPostByUser(userId);
+
+		return new ResponseEntity<List<PostDto>>(posts, HttpStatus.OK);
+
 	}
-	
+
 	@GetMapping("/category/{catId}/posts")
-	public ResponseEntity<List<PostDto>> getByCategory(@PathVariable Integer catId)
-	{
-		List<PostDto> posts= this.postService.getPostByCategory(catId);
-		
-		return new ResponseEntity<List<PostDto>>(posts,HttpStatus.OK);
-		
+	public ResponseEntity<List<PostDto>> getByCategory(@PathVariable Integer catId) {
+		List<PostDto> posts = this.postService.getPostByCategory(catId);
+
+		return new ResponseEntity<List<PostDto>>(posts, HttpStatus.OK);
+
 	}
-	
-	//get all post
+
+	// get all post
 	@GetMapping("/")
-	public ResponseEntity<PostResponce> getAllPost(@RequestParam(value = "pageNumber",defaultValue  = "0" , required = false) Integer pageNumber,@RequestParam(value="pageSize", defaultValue = "10", required = false) Integer pageSize )
-	{
-		PostResponce allPost = this.postService.getAllPost(pageNumber,pageSize);
-		return new ResponseEntity<PostResponce>(allPost,HttpStatus.OK);
+	public ResponseEntity<PostResponce> getAllPost(
+			@RequestParam(value = "pageNumber", defaultValue = "0", required = false) Integer pageNumber,
+			@RequestParam(value = "pageSize", defaultValue = "10", required = false) Integer pageSize) {
+		PostResponce allPost = this.postService.getAllPost(pageNumber, pageSize);
+		return new ResponseEntity<PostResponce>(allPost, HttpStatus.OK);
 	}
-	
-	//get post by id
+
+	// get post by id
 	@GetMapping("/{postId}")
-	public ResponseEntity<PostDto> getBYId(@PathVariable Integer postId)
-	{
-		PostDto allPost=this.postService.getPostById(postId);
-		return new ResponseEntity<PostDto>(allPost,HttpStatus.OK);
+	public ResponseEntity<PostDto> getBYId(@PathVariable Integer postId) {
+		PostDto allPost = this.postService.getPostById(postId);
+		return new ResponseEntity<PostDto>(allPost, HttpStatus.OK);
 	}
-	
+
 	@DeleteMapping("/{postId}")
-	public ApiResponse deletePost(@PathVariable Integer postId)
-	{
+	public ApiResponse deletePost(@PathVariable Integer postId) {
 		this.postService.deletePost(postId);
 		return new ApiResponse("Deletd Successfully", true);
 	}
-	
+
 	@PutMapping("/{postId}")
-	public ResponseEntity<PostDto> UpdatePost(@RequestBody PostDto postDto, @PathVariable Integer postId)
-	{
-		PostDto updated =this.postService.updatePost(postDto, postId);
-		return new ResponseEntity<PostDto>(updated,HttpStatus.OK);
+	public ResponseEntity<PostDto> UpdatePost(@RequestBody PostDto postDto, @PathVariable Integer postId) {
+		PostDto updated = this.postService.updatePost(postDto, postId);
+		return new ResponseEntity<PostDto>(updated, HttpStatus.OK);
 	}
-	
-	
+
+	// IMage Upload
+
+	@PostMapping("/image/upload/{postId}")
+	public ResponseEntity<PostDto> uploadPostImage(@RequestParam("image") MultipartFile image,
+			@PathVariable Integer postId) throws IOException {
+
+		PostDto postDto = this.postService.getPostById(postId);
+		String fileName = this.fileService.uploadImage(path, image);
+
+		postDto.setImageName(fileName);
+		PostDto updatePost = this.postService.updatePost(postDto, postId);
+
+		return new ResponseEntity<PostDto>(updatePost, HttpStatus.OK);
+
+	}
+
 }
