@@ -1,40 +1,47 @@
 package com.project.BlogApp.Entity;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name ="post")
+@Table(name = "post")
 public class Post {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer postId;
-	
+
 	private String title;
-	
+
 	private String content;
-	
+
 	private String imageName;
-	
+
 	private Date addDate;
-	
-	//  Foringn Key
-	
+
+	// Foringn Key
+
 	@ManyToOne
-	@JoinColumn(name ="cat_id")
+	@JoinColumn(name = "cat_id")
 	private Category category;
-	
+
 	@ManyToOne
-	@JoinColumn(name ="user_id")
+	@JoinColumn(name = "user_id")
 	private User user;
+
+	@OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
+	private Set<Comments> comments = new HashSet<>();
 
 	public Post() {
 		super();
@@ -42,7 +49,7 @@ public class Post {
 	}
 
 	public Post(Integer postId, String title, String content, String imageName, Date addDate, Category category,
-			User user) {
+			User user, Set<Comments> comments) {
 		super();
 		this.postId = postId;
 		this.title = title;
@@ -51,6 +58,7 @@ public class Post {
 		this.addDate = addDate;
 		this.category = category;
 		this.user = user;
+		this.comments = comments;
 	}
 
 	public Integer getPostId() {
@@ -108,6 +116,13 @@ public class Post {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	
-	
+
+	public Set<Comments> getComments() {
+		return comments;
+	}
+
+	public void setComments(Set<Comments> comments) {
+		this.comments = comments;
+	}
+
 }

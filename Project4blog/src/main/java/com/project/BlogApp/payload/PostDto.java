@@ -1,6 +1,12 @@
 package com.project.BlogApp.payload;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
+import com.project.BlogApp.Entity.Category;
+import com.project.BlogApp.Entity.Comments;
+import com.project.BlogApp.Entity.User;
 
 public class PostDto {
 
@@ -17,13 +23,15 @@ public class PostDto {
 
 	private UserDto user;
 
+	private Set<Comments> comments = new HashSet<>();
+
 	public PostDto() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
 	public PostDto(Integer postId, String title, String content, String imageName, Date addDate, CategoryDto category,
-			UserDto user) {
+			UserDto user, Set<Comments> comments) {
 		super();
 		this.postId = postId;
 		this.title = title;
@@ -32,6 +40,7 @@ public class PostDto {
 		this.addDate = addDate;
 		this.category = category;
 		this.user = user;
+		this.comments = comments;
 	}
 
 	public Integer getPostId() {
