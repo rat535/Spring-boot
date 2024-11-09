@@ -1,6 +1,7 @@
 package com.project.bitLabs.Model;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -9,6 +10,7 @@ import com.project.bitLabs.enums.Qualifaction;
 import com.project.bitLabs.enums.Skills;
 import com.project.bitLabs.payloads.Address;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -17,7 +19,9 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 
@@ -61,14 +65,22 @@ public class User {
 
 	private String resume;
 
+	@ManyToMany(cascade = CascadeType.PERSIST)
+	@JoinTable(
+	    name = "user_job_applications",
+	    joinColumns = @JoinColumn(name = "user_id"),
+	    inverseJoinColumns =@JoinColumn(name = "job_id")
+	)
+	private Set<Job> appliedJobs = new HashSet<>();
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
+	
 	public User(Long id, String name, String email, String whatsapp, Qualifaction qualification, String specialization,
 			int totalExperience, Set<PefferedLocation> preferdJobLocation, Address address, Date dateOfBirth,
-			Set<Skills> skills, String profileImage, String resume) {
+			Set<Skills> skills, String profileImage, String resume, Set<Job> appliedJobs) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -83,7 +95,9 @@ public class User {
 		this.skills = skills;
 		this.profileImage = profileImage;
 		this.resume = resume;
+		this.appliedJobs = appliedJobs;
 	}
+
 
 	public Long getId() {
 		return id;
@@ -189,4 +203,15 @@ public class User {
 		this.resume = resume;
 	}
 
+
+	public Set<Job> getAppliedJobs() {
+		return appliedJobs;
+	}
+
+
+	public void setAppliedJobs(Set<Job> appliedJobs) {
+		this.appliedJobs = appliedJobs;
+	}
+
+	
 }

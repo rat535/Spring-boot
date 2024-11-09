@@ -1,8 +1,10 @@
 package com.project.bitLabs.Dto;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
+import com.project.bitLabs.Model.Job;
 import com.project.bitLabs.enums.PefferedLocation;
 import com.project.bitLabs.enums.Qualifaction;
 import com.project.bitLabs.enums.Skills;
@@ -36,15 +38,19 @@ public class UserDto {
 	private String profileImage;
 
 	private String resume;
+	
+	
 
 	public UserDto() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
+
+
 	public UserDto(String name, String email, String whatsapp, Qualifaction qualification, String specialization,
 			int totalExperience, Set<PefferedLocation> preferdJobLocation, Address address, Date dateOfBirth,
-			Set<Skills> skills, String profileImage, String resume) {
+			Set<Skills> skills, String profileImage, String resume, Set<Job> appliedJobs) {
 		super();
 		this.name = name;
 		this.email = email;
@@ -58,7 +64,10 @@ public class UserDto {
 		this.skills = skills;
 		this.profileImage = profileImage;
 		this.resume = resume;
+		
 	}
+
+
 
 	public String getName() {
 		return name;
@@ -156,4 +165,9 @@ public class UserDto {
 		this.resume = resume;
 	}
 
+
+
+	
+
+	
 }
