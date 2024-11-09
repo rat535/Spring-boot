@@ -22,8 +22,11 @@ import com.project.bitLabs.Exception.CustomException;
 import com.project.bitLabs.service.FileServices;
 import com.project.bitLabs.service.UserService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
+@Tag(name = "Job Seekers", description ="profile ")
 @RestController
 @RequestMapping("/profile")
 public class UserController {
@@ -41,6 +44,7 @@ public class UserController {
 	private String ps;
 
 
+	@Operation(summary="Creating New User")
 	@PostMapping("/")
 	public ResponseEntity<UserDto> createUser(@Valid @RequestBody UserDto userDto) {
 		
@@ -52,6 +56,8 @@ public class UserController {
 		UserDto created = this.userService.createUser(userDto);
 		return new ResponseEntity<>(created, HttpStatus.CREATED);
 	}
+	
+	@Operation(summary="get the user by Id")
 	@GetMapping("/{id}")
 	public ResponseEntity<UserDto> geetById(@PathVariable Long id)
 	{
@@ -59,6 +65,7 @@ public class UserController {
 		return new ResponseEntity<UserDto>(userDto,HttpStatus.OK);
 	}
 	
+	@Operation(summary="update All")
 	@PutMapping("/{id}")
     public ResponseEntity<UserDto> updateUser(@PathVariable Long id, @Valid @RequestBody UserDto userDto){
 		 if (!userService.isValidSpecialization(userDto.getQualification(), userDto.getSpecialization())) {
@@ -69,6 +76,7 @@ public class UserController {
 	}
 	
 
+	@Operation(summary="update the profile pic")
 	@PostMapping("/image/{postId}")
 	public ResponseEntity<UserDto> uploadPostImage(@RequestParam("image") MultipartFile image,
 			@PathVariable Long postId) throws IOException {
@@ -83,6 +91,7 @@ public class UserController {
 
 	}
 	
+	@Operation(summary="update the resume")
 	@PostMapping("/resume/{postId}")
 	public ResponseEntity<UserDto> uploadResume(@RequestParam("resume") MultipartFile resume,
 			@PathVariable Long postId) throws IOException {

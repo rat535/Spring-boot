@@ -17,6 +17,11 @@ import com.project.bitLabs.Dto.JobDto;
 import com.project.bitLabs.Dto.UserDto;
 import com.project.bitLabs.service.JobService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
+
+@Tag(name = "Recrutiers", description ="jobs ")
 @RestController
 @RequestMapping("/job")
 public class jobController {
@@ -24,6 +29,7 @@ public class jobController {
 	@Autowired
 	private JobService jobservice;
 
+	@Operation(summary="apply for the job")
 	@PostMapping("/{jobId}/apply/{userId}")
 	public ResponseEntity<String> applyForJob(@PathVariable Long userId, @PathVariable Long jobId ) {
 		try {
@@ -37,24 +43,28 @@ public class jobController {
 		}
 	}
 
+	@Operation(summary="add a job")
 	@PostMapping("/")
 	public ResponseEntity<JobDto> addJob(@RequestBody JobDto jobDto) {
 		JobDto createdJob = jobservice.addJob(jobDto);
 		return ResponseEntity.status(HttpStatus.CREATED).body(createdJob);
 	}
 
+	@Operation(summary="get the job by id")
 	@GetMapping("/{jobId}")
 	public ResponseEntity<JobDto> getJobById(@PathVariable Long jobId) {
 		JobDto job = jobservice.getJobById(jobId);
 		return ResponseEntity.ok(job);
 	}
 	
+	@Operation(summary="update All Feild")
 	@PutMapping("/{jobId}")
     public ResponseEntity<JobDto> updateJob(@PathVariable Long jobId, @RequestBody JobDto updatedJob) {
         JobDto job = jobservice.updateJob(jobId, updatedJob);
         return ResponseEntity.ok(job);
     }
 	
+	@Operation(summary="Get all the person applied for the job")
 	@GetMapping("/{jobId}/applicants")
     public ResponseEntity<List<UserDto>> getUsersByJobId(@PathVariable Long jobId) {
         List<UserDto> users = jobservice.getUsersByJobId(jobId);

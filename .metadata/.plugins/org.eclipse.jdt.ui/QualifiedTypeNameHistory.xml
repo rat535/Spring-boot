@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="java.util.Date"/>
-    <fullyQualifiedTypeName name="java.lang.Long"/>
-    <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.JpaRepository"/>
-    <fullyQualifiedTypeName name="com.project.bitLabs.Model.Education"/>
-    <fullyQualifiedTypeName name="com.project.bitLabs.Repository.EducationRepo"/>
     <fullyQualifiedTypeName name="jakarta.persistence.Entity"/>
     <fullyQualifiedTypeName name="jakarta.persistence.Id"/>
     <fullyQualifiedTypeName name="jakarta.persistence.GeneratedValue"/>
@@ -50,11 +45,19 @@
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PutMapping"/>
     <fullyQualifiedTypeName name="com.project.bitLabs.service.FileServices"/>
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
-    <fullyQualifiedTypeName name="com.project.bitLabs.Dto.UserDto"/>
     <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
     <fullyQualifiedTypeName name="org.springframework.web.multipart.MultipartFile"/>
     <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonIgnore"/>
     <fullyQualifiedTypeName name="jakarta.persistence.CascadeType"/>
     <fullyQualifiedTypeName name="org.springframework.context.annotation.Configuration"/>
     <fullyQualifiedTypeName name="org.springframework.context.annotation.Bean"/>
+    <fullyQualifiedTypeName name="springfox.documentation.swagger2.annotations.EnableSwagger2"/>
+    <fullyQualifiedTypeName name="springfox.documentation.spi.DocumentationType"/>
+    <fullyQualifiedTypeName name="springfox.documentation.builders.RequestHandlerSelectors"/>
+    <fullyQualifiedTypeName name="springfox.documentation.builders.PathSelectors"/>
+    <fullyQualifiedTypeName name="org.springdoc.core.models.GroupedOpenApi"/>
+    <fullyQualifiedTypeName name="java.util.stream.Collectors"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="com.project.bitLabs.Dto.UserDto"/>
+    <fullyQualifiedTypeName name="io.swagger.v3.oas.annotations.Operation"/>
 </qualifiedTypeNameHistroy>
