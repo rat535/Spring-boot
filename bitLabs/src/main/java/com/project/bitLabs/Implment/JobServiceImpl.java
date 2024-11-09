@@ -1,11 +1,14 @@
 package com.project.bitLabs.Implment;
 
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
+
 
 import com.project.bitLabs.Dto.JobDto;
 import com.project.bitLabs.Dto.UserDto;
@@ -136,6 +139,15 @@ public class JobServiceImpl implements JobService {
 
         return this.JobToDto(job);
         		
+	}
+
+	@Override
+	public List<UserDto> getUsersByJobId(Long jobId) {
+		Job job = jobrepo.findById(jobId)
+	            .orElseThrow(() -> new CustomException("Job not found with id: " + jobId));
+	        
+	        // Convert each User to UserDto and collect in a list
+	        return job.getUsers().stream().map((account) -> this.UserToDto(account)).collect(Collectors.toList());
 	}
 
 }

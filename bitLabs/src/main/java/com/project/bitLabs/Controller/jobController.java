@@ -1,5 +1,7 @@
 package com.project.bitLabs.Controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.bitLabs.Dto.JobDto;
+import com.project.bitLabs.Dto.UserDto;
 import com.project.bitLabs.service.JobService;
 
 @RestController
@@ -50,6 +53,12 @@ public class jobController {
     public ResponseEntity<JobDto> updateJob(@PathVariable Long jobId, @RequestBody JobDto updatedJob) {
         JobDto job = jobservice.updateJob(jobId, updatedJob);
         return ResponseEntity.ok(job);
+    }
+	
+	@GetMapping("/{jobId}/applicants")
+    public ResponseEntity<List<UserDto>> getUsersByJobId(@PathVariable Long jobId) {
+        List<UserDto> users = jobservice.getUsersByJobId(jobId);
+        return ResponseEntity.ok(users);
     }
 
 }

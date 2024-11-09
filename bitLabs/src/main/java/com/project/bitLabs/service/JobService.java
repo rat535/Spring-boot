@@ -1,5 +1,7 @@
 package com.project.bitLabs.service;
 
+import java.util.List;
+
 import com.project.bitLabs.Dto.JobDto;
 import com.project.bitLabs.Dto.UserDto;
 
@@ -14,5 +16,7 @@ public interface JobService {
 	JobDto getJobById(Long jobId);
 	
 	JobDto updateJob(Long jobId, JobDto updatedJob);
+	
+	List<UserDto> getUsersByJobId(Long jobId);
 
 }

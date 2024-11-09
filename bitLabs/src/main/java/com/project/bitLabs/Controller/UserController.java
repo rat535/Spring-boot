@@ -90,8 +90,7 @@ public class UserController {
 		UserDto postDto = this.userService.getUserById(postId);
 		String fileName = this.fileServices.uploadImage(ps, resume);
 
-		System.out.println("Uploaded Resume Filename: " + fileName);
-
+		
 		postDto.setResume(fileName);
 		UserDto updatePost = this.userService.updateUser(postId, postDto);
 
